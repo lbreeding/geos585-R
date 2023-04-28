@@ -1,0 +1,7 @@
+{
+        "code_dir" :  "/home/dave/Data/RlibraryMeko/",
+        "dataIn_dir" :  "/home/dave/GitWork/geos585-R/Geos585A/",
+        "outputDir" :  "/home/dave/GitWork/geos585-R/Geos585A/test_out/",
+        "dataIn_file" : "GeosTrialData.xlsx",
+        "dataOut_file" : "Meko01.RData"
+}
