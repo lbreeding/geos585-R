@@ -69,6 +69,50 @@ for (j in 1:length(X)){
   eval(parse(text=s))
 }
 rm(a,b,s)
+library(readxl)
+
+# Check if file exists
+if (file.exists(datain_file)) {
+  
+  # Check file extension
+  file_ext <- tools::file_ext(datain_file)
+  
+  # Check file format
+  if (file_ext %in% c("xlsx", "txt", "csv")) {
+    # File exists and is in the correct format
+    
+    # Read the file using appropriate function based on the format
+    if (file_ext == "xlsx") {
+      data <- read_excel(datain_file)
+    } else {
+      data <- read.table(datain_file, header = TRUE)  # Assuming txt or csv has headers
+    }
+    
+    # Save row 1 to variable "ids"
+    ids <- data[1, ]
+    
+    # Save row 2 to variable "units"
+    units <- data[2, ]
+    
+    # Save the rest of the data as a matrix using variable "ts_data"
+    tsa$X <- as.matrix(data[-c(1, 2), ])
+    
+    # Continue with the rest of the code
+    
+  } else {
+    # File exists but is not in the correct format
+    print("File exists but is not in the correct format.")
+  }
+  
+} else {
+  # File does not exist
+  print("File does not exist.")
+}
+
+
+
+
+
 
 # Status
 #
@@ -117,3 +161,14 @@ tsa <- vector(mode='list', length=6) # initialize empty list for tsa
 # 
 # row_1 <- data[1, ]
 # row_2 <- data[2, ]
+
+
+library(readxl)
+#file_path <- "C:/Users/15203/OneDrive/Documents/GitHub/geos585-R/Geos585A/GeosTrialData.xlsx"
+data1 <- read_excel(file_path, sheet = "treeDataTreeRO1876R", range = "A1:XFD150")
+ids <- as.character(data1[1, ])
+units <- as.character(data1[2, ])
+ts_data <- as.matrix(data1[-c(1,2),])
+
+
+ 
